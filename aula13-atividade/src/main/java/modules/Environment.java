@@ -31,6 +31,7 @@ public class Environment extends EnvironmentImpl {
         this.creature = null;
         this.food = null;
         this.jewel = null;
+        this.deliverySpot = null;
         this.thingAhead = new ArrayList<>();
         this.leafletJewel = null;
         this.currentAction = "rotate";
@@ -46,6 +47,7 @@ public class Environment extends EnvironmentImpl {
             System.out.println("Reseting the WS3D World ...");
             proxy.getWorld().reset();
             creature = proxy.createCreature(100, 100, 0);
+            World.createDeliverySpot(200, 200);
             creature.start();
             System.out.println("Starting the WS3D Resource Generator ... ");
             World.grow(1);
@@ -110,7 +112,11 @@ public class Environment extends EnvironmentImpl {
         thingAhead.clear();
                 
         for (Thing thing : creature.getThingsInVision()) {
-            if (creature.calculateDistanceTo(thing) <= Constants.OFFSET) {
+            if (thing.getCategory() == Constants.categoryDeliverySPOT) {
+                deliverySpot = thing;
+                break;
+            }
+            else if (creature.calculateDistanceTo(thing) <= Constants.OFFSET) {
                 // Identifica o objeto proximo
                 thingAhead.add(thing);
                 break;
