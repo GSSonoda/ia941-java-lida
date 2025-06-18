@@ -188,7 +188,11 @@ public class Environment extends EnvironmentImpl {
                     }
                     this.resetState();
                     break;
-                default:creature.move(0.0, 0.0, 0.0);
+                case "deliver":
+                    System.out.println("DELIVER.......");
+                    // creature.deliverLeaflet(this.getBestCompleteLeaflet().getID().toString());
+                default:
+                    creature.move(0.0, 0.0, 0.0);
                     break;
             }
         } catch (Exception e) {
