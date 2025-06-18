@@ -22,7 +22,8 @@ public class Environment extends EnvironmentImpl {
     private Thing jewel;
     private List<Thing> thingAhead;
     private Thing leafletJewel;
-    private String currentAction;   
+    private Map<Long, Boolean> leafletStatus;
+    private static String currentAction;   
     
     public Environment() {
         this.ticksPerRun = DEFAULT_TICKS_PER_RUN;
@@ -97,6 +98,9 @@ public class Environment extends EnvironmentImpl {
         return requestedObject;
     }
 
+    public String getCurrentAction(){
+        return currentAction;
+    }
     
     public void updateEnvironment() {
         creature.updateState();
@@ -135,8 +139,6 @@ public class Environment extends EnvironmentImpl {
            
         }
     }
-    
-    
     
     @Override
     public void processAction(Object action) {
