@@ -21,6 +21,7 @@ public class Environment extends EnvironmentImpl {
     private Creature creature;
     private Thing food;
     private Thing jewel;
+    private Thing deliverySpot;
     private List<Thing> thingAhead;
     private Thing leafletJewel;
     private Map<Long, Boolean> leafletStatus;
