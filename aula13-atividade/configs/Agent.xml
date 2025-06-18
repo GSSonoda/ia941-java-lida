@@ -45,7 +45,7 @@
             <param name="pam.propagationTicksPerRun" type="int">1</param>
             <param name="pam.propagateActivationThreshold" type="double">0.05</param>
             <param name="nodes">
-                food,nearObject,leafletJewel,jewel, leafletStatus
+                leafletStatus, food,nearObject,leafletJewel,jewel, 
             </param>
             <taskspawner>defaultTS</taskspawner>
             <initialTasks>
@@ -201,6 +201,18 @@
                     <param name="learnable.baseLevelExciteStrategy" type="string">defaultExcite</param>
                     <param name="learnable.totalActivationStrategy" type="string">DefaultTotalActivationStrategy</param>
                 </task>
+                <task name="leafletStatusAttentionCodelet">
+                    <tasktype>BasicAttentionCodelet</tasktype>
+                    <ticksperrun>5</ticksperrun>
+                    <param name="nodes" type="string">leafletStatus</param>
+                    <param name="refractoryPeriod" type="int">500</param>
+                    <param name="initialActivation" type="double">1.0</param>
+                    <param name="learnable.baseLevelActivation" type="double">1.0</param>
+                    <param name="learnable.baseLevelRemovalThreshold" type="double">-1.0</param>
+                    <param name="learnable.baseLevelDecayStrategy" type="string">defaultDecay</param>
+                    <param name="learnable.baseLevelExciteStrategy" type="string">defaultExcite</param>
+                    <param name="learnable.totalActivationStrategy" type="string">DefaultTotalActivationStrategy</param>
+                </task>
             </initialTasks>
         </module>
         <module name="StructureBuildingCodeletModule">
@@ -233,10 +245,11 @@
             <param name="proceduralMemory.addingListWeight"  type="double">1.0</param>
             <param name="proceduralMemory.schemeClass">edu.memphis.ccrg.lida.proceduralmemory.SchemeImpl</param>
             <!--   ____scheme_name__ _____ scheme_label_______|_context______|__action_name____|result|baseLabelActiv. -->
-            <param name="scheme.1">if no leaflet jewel, rotate|(jewel)()|action.rotate|()()|0.3</param>
-            <param name="scheme.2">if leaflet jewel, goto jewel|(leafletJewel)()|action.gotoJewel|()()|0.3</param>
-            <param name="scheme.3">if food, goto food|(food)()|action.gotoFood|()()|0.3</param>
-            <param name="scheme.4">if nearObject, get object|(nearObject)()|action.get|()()|0.01</param>
+            <param name="scheme.1">if leafletStatus, deliver|(leafletStatus)()|action.deliver|()()|0.3</param>
+            <param name="scheme.2">if no leaflet jewel, rotate|(jewel)()|action.rotate|()()|0.3</param>
+            <param name="scheme.3">if leaflet jewel, goto jewel|(leafletJewel)()|action.gotoJewel|()()|0.3</param>
+            <param name="scheme.4">if food, goto food|(food)()|action.gotoFood|()()|0.3</param>
+            <param name="scheme.5">if nearObject, get object|(nearObject)()|action.get|()()|0.01</param>            
             <taskspawner>defaultTS</taskspawner>                      
             <initializerclass>edu.memphis.ccrg.lida.proceduralmemory.BasicProceduralMemoryInitializer</initializerclass>
         </module>
@@ -255,10 +268,12 @@
             <class>edu.memphis.ccrg.lida.sensorymotormemory.BasicSensoryMotorMemory</class>
             <associatedmodule>Environment</associatedmodule>
             <param name="smm.processActionTaskTicks" type="int">1</param>
-            <param name="smm.mapping.1">action.rotate,algorithm.rotate</param>
-            <param name="smm.mapping.2">action.gotoFood,algorithm.gotoFood</param>
-            <param name="smm.mapping.3">action.gotoJewel,algorithm.gotoJewel</param>
-            <param name="smm.mapping.4">action.get,algorithm.get</param>
+            <param name="smm.mapping.1">action.deliver,algorithm.deliver</param>
+            <param name="smm.mapping.2">action.rotate,algorithm.rotate</param>
+            <param name="smm.mapping.3">action.gotoFood,algorithm.gotoFood</param>
+            <param name="smm.mapping.4">action.gotoJewel,algorithm.gotoJewel</param>
+            <param name="smm.mapping.5">action.get,algorithm.get</param>
+            
             <taskspawner>defaultTS</taskspawner>
             <initializerclass>edu.memphis.ccrg.lida.sensorymotormemory.BasicSensoryMotorMemoryInitializer</initializerclass>
         </module>
