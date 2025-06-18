@@ -3,6 +3,7 @@ package modules;
 import edu.memphis.ccrg.lida.environment.EnvironmentImpl;
 import edu.memphis.ccrg.lida.framework.tasks.FrameworkTaskImpl;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import ws3dproxy.WS3DProxy;
@@ -34,6 +35,7 @@ public class Environment extends EnvironmentImpl {
         this.deliverySpot = null;
         this.thingAhead = new ArrayList<>();
         this.leafletJewel = null;
+        this.leafletStatus = null;
         this.currentAction = "rotate";
     }
 
@@ -94,6 +96,9 @@ public class Environment extends EnvironmentImpl {
             case "leafletJewel":
                 requestedObject = leafletJewel;
                 break;
+            case "leafletStatus":
+                requestedObject = leafletStatus;
+                break;
             default:
                 break;
         }
@@ -110,6 +115,7 @@ public class Environment extends EnvironmentImpl {
         jewel = null;
         leafletJewel = null;
         thingAhead.clear();
+        leafletStatus = getLeafletStatus();
                 
         for (Thing thing : creature.getThingsInVision()) {
             if (thing.getCategory() == Constants.categoryDeliverySPOT) {
@@ -187,5 +193,13 @@ public class Environment extends EnvironmentImpl {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private Map<Long, Boolean> getLeafletStatus() {
+        Map<Long, Boolean> status = new HashMap<>();
+        for(Leaflet leaflet: creature.getLeaflets()){
+            status.put(leaflet.getID(), leaflet.isCompleted());
+        }
+        return status;
     }
 }
