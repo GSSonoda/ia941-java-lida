@@ -198,9 +198,39 @@ public class Environment extends EnvironmentImpl {
 
     private Map<Long, Boolean> getLeafletStatus() {
         Map<Long, Boolean> status = new HashMap<>();
-        for(Leaflet leaflet: creature.getLeaflets()){
-            status.put(leaflet.getID(), leaflet.isCompleted());
+        for (Leaflet leaflet : creature.getLeaflets()) {
+            boolean isCompleted = true;
+            for (Map.Entry<String, Integer[]> leafletJewel : leaflet.getItems().entrySet()) {
+                Integer[] jewels = leafletJewel.getValue();
+                System.out.println("jewels[0] " + jewels[0]);
+                System.out.println("jewels[1] " + jewels[1]);
+                if (jewels[0] > jewels[1]) {
+                    isCompleted = false;
+                    break;
+                }
+                
+                
+            }
+            System.out.println("~");
+            
+            status.put(leaflet.getID(), isCompleted);
         }
+        System.out.println("status " + status);
         return status;
     }
+
+    private Leaflet getBestCompleteLeaflet() {
+        Leaflet leaflet = null;
+        int betterPayment = 0;
+
+        for (Leaflet l : creature.getLeaflets()) {
+            if (l.isCompleted() && l.getPayment() > betterPayment) {
+                leaflet = l;
+                betterPayment = l.getPayment();
+            }
+        }
+
+        return leaflet;
+    }
+
 }
