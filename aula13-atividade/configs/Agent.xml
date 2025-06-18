@@ -193,7 +193,7 @@
                     <tasktype>BasicAttentionCodelet</tasktype>
                     <ticksperrun>5</ticksperrun>
                     <param name="nodes" type="string">jewel</param>
-                    <param name="refractoryPeriod" type="int">500</param>
+                    <param name="refractoryPeriod" type="int">1000</param>
                     <param name="initialActivation" type="double">1.0</param>
                     <param name="learnable.baseLevelActivation" type="double">1.0</param>
                     <param name="learnable.baseLevelRemovalThreshold" type="double">-1.0</param>
@@ -205,7 +205,7 @@
                     <tasktype>BasicAttentionCodelet</tasktype>
                     <ticksperrun>5</ticksperrun>
                     <param name="nodes" type="string">leafletStatus</param>
-                    <param name="refractoryPeriod" type="int">500</param>
+                    <param name="refractoryPeriod" type="int">1</param>
                     <param name="initialActivation" type="double">1.0</param>
                     <param name="learnable.baseLevelActivation" type="double">1.0</param>
                     <param name="learnable.baseLevelRemovalThreshold" type="double">-1.0</param>
