@@ -189,8 +189,12 @@ public class Environment extends EnvironmentImpl {
                     this.resetState();
                     break;
                 case "deliver":
-                    System.out.println("DELIVER.......");
-                    // creature.deliverLeaflet(this.getBestCompleteLeaflet().getID().toString());
+                    if (creature.calculateDistanceTo(deliverySpot) <= Constants.OFFSET){
+                        creature.moveto(4.0, deliverySpot.getX1(), deliverySpot.getY1());
+                        break;
+                    }
+                    creature.deliverLeaflet(this.getBestCompleteLeaflet().getID().toString());
+                    break;
                 default:
                     creature.move(0.0, 0.0, 0.0);
                     break;

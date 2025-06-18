@@ -201,6 +201,18 @@
                     <param name="learnable.baseLevelExciteStrategy" type="string">defaultExcite</param>
                     <param name="learnable.totalActivationStrategy" type="string">DefaultTotalActivationStrategy</param>
                 </task>
+                <task name="leafletStatusAttentionCodelet">
+                    <tasktype>BasicAttentionCodelet</tasktype>
+                    <ticksperrun>5</ticksperrun>
+                    <param name="nodes" type="string">leafletStatus</param>
+                    <param name="refractoryPeriod" type="int">500</param>
+                    <param name="initialActivation" type="double">1.0</param>
+                    <param name="learnable.baseLevelActivation" type="double">1.0</param>
+                    <param name="learnable.baseLevelRemovalThreshold" type="double">-1.0</param>
+                    <param name="learnable.baseLevelDecayStrategy" type="string">defaultDecay</param>
+                    <param name="learnable.baseLevelExciteStrategy" type="string">defaultExcite</param>
+                    <param name="learnable.totalActivationStrategy" type="string">DefaultTotalActivationStrategy</param>
+                </task>
             </initialTasks>
         </module>
         <module name="StructureBuildingCodeletModule">
