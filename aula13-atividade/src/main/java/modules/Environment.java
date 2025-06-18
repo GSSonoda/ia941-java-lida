@@ -190,10 +190,10 @@ public class Environment extends EnvironmentImpl {
                     break;
                 case "deliver":
                     if (creature.calculateDistanceTo(deliverySpot) <= Constants.OFFSET){
-                        creature.moveto(4.0, deliverySpot.getX1(), deliverySpot.getY1());
+                        creature.deliverLeaflet(this.getBestCompleteLeaflet().getID().toString());
                         break;
                     }
-                    creature.deliverLeaflet(this.getBestCompleteLeaflet().getID().toString());
+                    creature.moveto(4.0, deliverySpot.getX1(), deliverySpot.getY1());
                     break;
                 default:
                     creature.move(0.0, 0.0, 0.0);
