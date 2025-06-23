@@ -207,7 +207,7 @@ public class Environment extends EnvironmentImpl {
     private Map<Long, Boolean> getLeafletStatus() {
         Map<Long, Boolean> status = new HashMap<>();
         for (Leaflet leaflet : creature.getLeaflets()) {
-            status.put(leaflet.getID(), leafleatIsComplete(leaflet));
+            status.put(leaflet.getID(), leaflet.isCompleted());
         }
         System.out.println("status " + status);
         return status;
@@ -218,7 +218,7 @@ public class Environment extends EnvironmentImpl {
         int betterPayment = 0;
 
         for (Leaflet l : creature.getLeaflets()) {
-            if (leafleatIsComplete(l) && l.getPayment() > betterPayment) {
+            if (l.isCompleted() && l.getPayment() > betterPayment) {
                 leaflet = l;
                 betterPayment = l.getPayment();
             }
